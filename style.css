@@ -1,0 +1,224 @@
+/* Reset Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Comic Sans MS', 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #d2e9f9;
+    background-image: radial-gradient(#b0d4f1 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #fce1e4 0%, #d2e9f9 100%);
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    border-bottom: 8px dotted #1a2639;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Emoji melayang (tidak geser) */
+header::before {
+    content: "🎓 ✨ 🎉 💕 🎈";
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    opacity: 0.8;
+    animation: floatUpDown 3s ease-in-out infinite;
+}
+
+@keyframes floatUpDown {
+    0%, 100% {
+        transform: translate(-50%, 0) rotate(-5deg);
+    }
+    50% {
+        transform: translate(-50%, -20px) rotate(5deg);
+    }
+}
+
+.header-content h1 {
+    font-size: 3.5rem;
+    color: #1a2639;
+    text-shadow: 4px 4px 0px #fff;
+    animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Galeri */
+.gallery-container {
+    max-width: 850px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.gallery-item {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 100px;
+    background: #fff;
+    border-radius: 25px;
+    box-shadow: 12px 12px 0px #1a2639;
+    border: 4px solid #1a2639;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+}
+
+/* Efek miring */
+.gallery-item:nth-child(odd) { transform: rotate(-1deg); }
+.gallery-item:nth-child(even) { transform: rotate(1deg); }
+
+.gallery-item:hover {
+    transform: scale(1.05) rotate(0deg) !important;
+    z-index: 5;
+}
+
+.gallery-item.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Photo */
+.photo-wrapper {
+    flex: 1.2;
+    min-height: 350px;
+    position: relative;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    aspect-ratio: 4 / 3;
+}
+
+.gallery-item:not(.highlight) .photo-wrapper {
+    border-right: 4px solid #1a2639;
+}
+
+.reverse .photo-wrapper {
+    border-right: none;
+    border-left: 4px solid #1a2639;
+}
+
+.photo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    max-width: 100%;
+    transition: 0.5s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Sticker */
+.sticker {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    background: #ffdeeb;
+    color: #d63384;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: 3px solid #1a2639;
+    box-shadow: 4px 4px 0px #1a2639;
+    z-index: 10;
+    animation: wiggle 2s infinite;
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(-10deg); }
+    50% { transform: rotate(-5deg) scale(1.1); }
+}
+
+.reverse .sticker {
+    left: auto;
+    right: -20px;
+    background: #fff3bf;
+    color: #f59f00;
+    animation-delay: 0.5s;
+}
+
+/* Deskripsi */
+.description {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.description h3 {
+    font-size: 2rem;
+    color: #1a2639;
+    margin-bottom: 15px;
+    text-decoration: underline wavy #ffdeeb;
+}
+
+/* Highlight */
+.gallery-item.highlight {
+    background: #f8f0ff;
+    flex-direction: column;
+    text-align: center;
+    border-style: double;
+    border-width: 6px;
+}
+
+.gallery-item.highlight .photo-wrapper {
+    border: none;
+    border-bottom: 4px solid #1a2639;
+    min-height: 450px;
+}
+
+.gallery-item.highlight .sticker {
+    left: 50%;
+    transform: translateX(-50%);
+    top: -25px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    background-color: #1a2639;
+    color: #fff;
+    margin-top: 50px;
+    letter-spacing: 2px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .gallery-item,
+    .gallery-item.reverse {
+        flex-direction: column;
+    }
+
+    .photo-wrapper {
+        border-right: none !important;
+        border-left: none !important;
+        border-bottom: 4px solid #1a2639;
+    }
+
+    .header-content h1 {
+        font-size: 2.2rem;
+    }
+}
